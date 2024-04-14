@@ -184,23 +184,23 @@ $(document).ready(function () {
         },
         data: {
             // Event title
-            title: "Ram and Antara's Wedding",
+            title: "John and Parisa's Wedding",
 
             // Event start date
-            start: new Date('Nov 27, 2017 10:00'),
+            start: new Date('Aug 30, 2024 17:00'),
 
             // Event duration (IN MINUTES)
             // duration: 120,
 
             // You can also choose to set an end time
             // If an end time is set, this will take precedence over duration
-            end: new Date('Nov 29, 2017 00:00'),
+            end: new Date('August 31, 2024 00:00'),
 
             // Event Address
-            address: 'ITC Fortune Park Hotel, Kolkata',
+            address: 'Cumberland Heritage Village Museum, 2940 Old Montreal Rd, Cumberland, ON K4C 1G3, Canada',
 
             // Event Description
-            description: "We can't wait to see you on our big day. For any queries or issues, please contact Mr. Amit Roy at +91 9876543210."
+            description: "We can't wait to see you on our big day. For any queries or issues, please contact us at johnparisawedding2024@gmail.com."
         }
     });
 
@@ -214,9 +214,8 @@ $(document).ready(function () {
 
         $('#alert-wrapper').html(alert_markup('info', '<strong>Just a sec!</strong> We are saving your details.'));
 
-        if (MD5($('#invite_code').val()) !== '573ffd07727731e05704830ceb6462b0'
-            && MD5($('#invite_code').val()) !== 'a98c93d17aa70951500d523449bf51dc') {
-            $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Your invite code is incorrect. and this is a test'));
+        if (MD5($('#invite_code').val()) !== '573ffd07727731e05704830ceb6462b0') {
+            $('#alert-wrapper').html(alert_markup('danger', '<strong>Sorry!</strong> Your invite code is incorrect.'));
         } else {
             $.post('https://script.google.com/macros/s/AKfycbyv_EImMK2vTyNPW3PHVIYkXYIiuT5Z-FUuQFDHEmU9iVLnrZczV-QPAGqGcyRxCBwK/exec', data)
                 .done(function (data) {

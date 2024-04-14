@@ -48,6 +48,40 @@
                 document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"><\/script>');
             }
         }
+        
+        $(document).ready(function() {
+            $(".fancybox").each(function() {
+                // Store the title in a data attribute and remove the title attribute
+                var title = this.title;
+                $(this).attr('data-title', title).removeAttr('title');
+            });
+
+            $(".fancybox").fancybox({
+                helpers: {
+                    title: {
+                        type: 'inside' // Ensures titles are shown inside the lightbox
+                    }
+                },
+                beforeShow: function() {
+                    // Set the title from stored data attribute
+                    this.title = $(this.element).data('title');
+                },
+                afterClose: function() {
+                    // Optionally, clear the title to ensure no tooltips
+                    this.title = '';
+                }
+            });
+
+            // Optional: Reapply the title attribute after closing Fancybox if necessary
+            $(".fancybox").on('mouseleave', function() {
+                var title = $(this).data('title');
+                $(this).attr('title', title);
+            });
+        });
+
+
+    
+
     </script>
 
     <link rel="stylesheet" href="css/normalize.min.css">
@@ -69,7 +103,7 @@
     <section class="navigation">
         <header>
             <div class="header-content">
-                <div class="logo"><a href="#"><img src="img/logo.png" alt="Logo"></a></div>
+                <div class="logo"><a href="#"><img src="img/John & Parisa wedding monogram_adjusted.png" alt="Logo"></a></div>
                 <div class="header-nav">
                     <nav>
                         <ul class="primary-nav">
@@ -77,11 +111,9 @@
                             <li><a href="#events">Events</a></li>
                             <li><a href="#instagram">Photos&Videos</a></li>
                             <li><a href="#eng-pics">Fun memories</a></li>
-                            <li class="hidden-sm hidden-xs"><a href="#video-bg">Glimpse of the city</a></li>
-                        </ul>
-                        <ul class="member-actions">
-                            <li><a href="#map" class="login">Venue</a></li>
-                            <li><a href="#rsvp" class="btn-white btn-small">RSVP</a></li>
+                            <li class="hidden-sm hidden-xs"><a href="#meetup">Glimpse of the city</a></li>                        
+                            <li><a href="#meetup_2">Venue</a></li>
+                            <li><a href="#rsvp">RSVP</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -300,12 +332,12 @@
         </div>
         <div class="row">
             <div class="col-md-2">
-                <a class="fancybox" rel="group" href="img/eng_pics/anniversary.jpg">
+                <a class="fancybox" rel="group" href="img/eng_pics/anniversary.jpg" title="Celebrating our anniversary<br>at our favorite restaurant<br>in the city.">
                     <div class="img-wrap">
                         <div class="overlay">
                             <i class="fa fa-search"></i>
                         </div>
-                        <img src="img/eng_pics/anniversary - sml.jpg" alt=""/>
+                        <img src="img/eng_pics/anniversary - sml.jpg" alt="Our First Anniversary"/>
                     </div>
                 </a>
             </div>
@@ -394,7 +426,7 @@
 </section>
 
 <!-- New Section for Where to Meet -->
-<section id="meetup" class="section-padding">
+<section id="meetup_2" class="section-padding">
     <div class="container text-center">
         <h3>Where exactly in Ottawa?</h3>
     </div>
@@ -460,17 +492,17 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
                             <div class="form-input-group">
-                                <i class="fa fa-users"></i><input type="number" name="Extra adults" class="" min="0"
+                                <i class="fa fa-users"></i><input type="number" name="Adults" class="" min="0"
                                                                   max="4"
-                                                                  placeholder="Husband/Wife/Partner"
+                                                                  placeholder="Adults (total)"
                                                                   required>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <div class="form-input-group">
-                                <i class="fa fa-users"></i><input type="number" name="Extra kids" class="" min="0"
+                                <i class="fa fa-users"></i><input type="number" name="Kids" class="" min="0"
                                                                   max="4"
-                                                                  placeholder="Kids"
+                                                                  placeholder="Kids (total)"
                                                                   required>
                             </div>
                         </div>                       
@@ -485,13 +517,23 @@
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <div class="form-input-group">
-                                <i class="fa fa-key"></i><input type="number" name="Invite_code" id="invite_code"
+                                <i class="fa fa-key"></i><input type="number" name="invite_code" id="invite_code"
                                                                 class="" min="0"
                                                                 placeholder="Invite code"
                                                                 required>
                             </div>
                         </div>                        
                     </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12"> <!-- Adjust the column size as needed -->
+                            <div class="form-input-group">
+                                <i class="fa fa-pencil-square-o"></i> <!-- Changed icon for visual distinction -->
+                                <input name="Notes" class="" placeholder="Additional Notes" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
                     <div class="row">
                         <div class="col-md-12" id="alert-wrapper"></div>
                     </div>
@@ -543,3 +585,13 @@
 </script>
 </body>
 </html>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        window.addEventListener('scroll', function() {
+            var header = document.querySelector('header');
+            header.classList.toggle('fixed', window.scrollY > 50);
+        });
+    });
+    </script>
+    
